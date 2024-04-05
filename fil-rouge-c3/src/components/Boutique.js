@@ -5,19 +5,30 @@ import ProduitCard from "./ProduitCard";
 
 export default function Boutique() {
     // state (data)
-   const [items,setItems]=useState(0);
-   useEffect(handleGetDatas,[])
+    const [items, setItems] = useState(0);
+    
+    useEffect(handleGetDatas, [])
     // behaviour (functions)
- function handleGetDatas() {
-    const tempList = [];    
-    itemsList.map(item=>{
-        return tempList.push(<li key={item.id}><ProduitCard item={item} /></li>)
-    })    
-    setItems(tempList);    
- }
+
+    
+
+    function handleGetDatas() {
+        const tempList = [];
+        itemsList.map(item => {
+            return (
+                tempList.push(                                      
+                    
+                        <ProduitCard key={item.id} item={item} />
+                                        
+                )
+            )
+        })
+        setItems(tempList);
+    }
     //rendering
     return (
         <>
+
             <div className="content">
                 {/* FILTRES */}
                 <div id="filter">
@@ -111,10 +122,10 @@ export default function Boutique() {
                         </div>
                     </div>
                 </div>
-                {/* PRODUIT*/}
-                <div><ul>{items}</ul></div>
-            </div>
 
+            </div>
+            {/* PRODUIT*/}
+            <div className="content">{items}</div>
         </>
     );
 }

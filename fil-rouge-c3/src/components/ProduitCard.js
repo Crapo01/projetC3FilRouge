@@ -1,33 +1,34 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 
 export default function ProduitCard({ item }) {
     const image = require(`${item.image}`);
-    const dataToPass = { name: 'John Doe', age: 25 };
+    
     return (
 
         <>
         
-            
-                <Card style={{ width: '18rem' }}>
+        
+                <Card className="m-3" style={{ width: '18rem' }}>
+                <Link to="/Produit" state={item} className = "text-light">
                     <Card.Img variant="top" src={image} />
+                </Link>
                     <Card.Body>
                         <Card.Title>{item.title}</Card.Title>
                         <Card.Text>
-                            {item.price}
+                            Prix: {item.price}
                         </Card.Text>
                         <Card.Text>
-                            {item.description}
+                            Note: {item.note}
                         </Card.Text>
                         <input type="number" id="qte" defaultValue={1} />
                         <Button variant="warning">AJOUTER AU PANIER</Button>
-                        <Card.Text>
-                            {item.price}
-                        </Card.Text>
+                        
                     </Card.Body>
                 </Card>
-           
+        
         </>
 
 

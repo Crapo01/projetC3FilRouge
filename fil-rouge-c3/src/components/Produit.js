@@ -1,16 +1,16 @@
 
-export default function Produit({item}) {
+import { useLocation } from 'react-router-dom'
+export default function Produit() {
+    const location=useLocation();
     
- 
+    const item=location.state;
+    const image = require(`${item.image}`);
     return (
 
-        <>
-            {/* TODO: Rendre la fiche produit dynamique */}
-            {/* HEADER*/}
-            {console.log({item})};
+        <> 
             <div className="content">
                 <div>
-                    <img src={item.image} alt={item.title} width={300} height={300} />
+                    <img src={image} alt={item.title} width={300} height={300} />
                 </div>
                 <div className="table">
                     <div className="text-style1" style={{ marginTop: 10 }}>

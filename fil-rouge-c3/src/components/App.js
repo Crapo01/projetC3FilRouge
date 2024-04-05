@@ -6,9 +6,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Produit from "./Produit";
 
 import {
-  BrowserRouter as Router,  
+  BrowserRouter,  
   Route,
-  Routes
+  Routes,
+  
 } from "react-router-dom";
 
 
@@ -22,19 +23,21 @@ function App() {
   // rendering
   return (
     <>
-      <Router>
+      <BrowserRouter basename="/">
         <Header></Header>
         <Routes>
           
           <Route path="/" element={<Acceuil />}/>
           
-          <Route path="/Boutique" element={<Boutique />}/>
-          <Route path="/Produit" element={Produit}/>  
+          <Route path="Boutique" element={<Boutique />}/>
+          <Route path="Produit" element={<Produit />}/>
+          
+            
           
         </Routes>
 
         <Footer></Footer>
-      </Router>
+      </BrowserRouter>
     </>
   )
 
