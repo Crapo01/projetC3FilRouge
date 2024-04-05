@@ -5,12 +5,12 @@ export default function Footer(){
     return(
         <div id="footer">
             <div id="informations">
-                <div class="text-style3">Choco pap</div>
-                <div class="text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</div>
+                <div className="text-style3">Choco pap</div>
+                <div className="text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</div>
             </div>
             <div id="contact">
-                <div class="text-style3">Contact</div>
-                <div class="text-style4">Adresse : 51 rue du chocolat 75000 Paris Téléphone: 01 23 45 67 89
+                <div className="text-style3">Contact</div>
+                <div className="text-style4">Adresse : 51 rue du chocolat 75000 Paris Téléphone: 01 23 45 67 89
                     Horaires: 9h00-17h00 du Lundi au vendredi</div>
             </div>
             <div id="social-network">

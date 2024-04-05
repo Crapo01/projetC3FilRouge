@@ -11,12 +11,12 @@ export default function Header() {
                 <img src={logo} alt="logo" width="70" height="70"></img>
             </div>
             <div id="header-right">
-                <div class="text-style1">
+                <div className="text-style1">
                     
-                    <p><Link to="./Acceuil">Home</Link></p></div>
-                <div class="text-style1">
+                    <p><Link to="/">Home</Link></p></div>
+                <div className="text-style1">
                     <p><Link to="./Boutique">Boutique</Link></p></div>
-                <div class="panier">
+                <div className="panier">
                     <img src={panier} alt="panier" width="70" height="70"></img>
                 </div>
             </div>

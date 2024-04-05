@@ -1,5 +1,21 @@
+import { useEffect, useState } from "react";
+import itemsList from "./datas/products.json";
+import ProduitCard from "./ProduitCard";
+
 
 export default function Boutique() {
+    // state (data)
+   const [items,setItems]=useState(0);
+   useEffect(handleGetDatas,[])
+    // behaviour (functions)
+ function handleGetDatas() {
+    const tempList = [];    
+    itemsList.map(item=>{
+        return tempList.push(<li key={item.id}><ProduitCard item={item} /></li>)
+    })    
+    setItems(tempList);    
+ }
+    //rendering
     return (
         <>
             <div className="content">
@@ -96,7 +112,7 @@ export default function Boutique() {
                     </div>
                 </div>
                 {/* PRODUIT*/}
-                <div>{/* TODO : Ajouter les produits de façon dynamique*/}</div>
+                <div><ul>{items}</ul></div>
             </div>
 
         </>
