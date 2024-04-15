@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import itemsList from "./datas/products.json";
 import ProduitCard from "./ProduitCard";
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function Boutique() {
     // state (data)
@@ -21,7 +23,8 @@ export default function Boutique() {
     const [filterPriceMax, setFilterPriceMax] = useState("");
 
     const filteredProducts = products.filter((product) =>
-
+    filterAll ||
+    (
         (
             ((filterBlanc && product.category.blanc === true)) ||
             ((filterLait && product.category.lait === true)) ||
@@ -36,7 +39,7 @@ export default function Boutique() {
         (product.note <= filterNoteMax) &&
         (filterPriceMin === '' || product.price >= parseFloat(filterPriceMin)) &&
         (filterPriceMax === '' || product.price <= parseFloat(filterPriceMax))
-
+    )
     )
 
 
@@ -46,13 +49,13 @@ export default function Boutique() {
         console.log(e);
         setFilterAll(e);
         if (e) {
-            setFilterBlanc(true);
-            setFilterNoir(true);
-            setFilterLait(true);
-            setFilterLiqueur(true);
-            setFilterCaramel(true);
-            setFilterFruit(true);
-            setFilterNoix(true);
+            setFilterBlanc(false);
+            setFilterNoir(false);
+            setFilterLait(false);
+            setFilterLiqueur(false);
+            setFilterCaramel(false);
+            setFilterFruit(false);
+            setFilterNoix(false);
             setFilterNoteMin(1);
             setFilterNoteMax(5);
             setFilterPriceMin("");
@@ -63,116 +66,122 @@ export default function Boutique() {
     //rendering
     return (
         <>
-            <div className="content">
-                {/* FILTRES */}
-                <div id="filter">
-                    <div className="text-style3">Catégories</div>
-                    <div className="zone-filtre">
-                        <div>
-                            <input onChange={(e) => resetFilter(e.target.checked)} type="checkbox" id="ch-all" checked={filterAll} />
-                            <label htmlFor="ch-all" className="text-style4">
-                                Tous
-                            </label>
+            <Container  className="content">
+                <Row>
+                    {/* FILTRES */}
+                    <Col md={3} id="filter">
+                        <div className="text-style3">Catégories</div>
+                        <div className="zone-filtre">
+                            <div>
+                                <input onChange={(e) => resetFilter(e.target.checked)} type="checkbox" id="ch-all" checked={filterAll} />
+                                <label htmlFor="ch-all" className="text-style4">
+                                    Tous
+                                </label>
+                            </div>
+
+                            <form onChange={() => setFilterAll(false)}>
+
+
+                                <div>
+                                    <input onChange={(e) => setFilterBlanc(e.target.checked)} type="checkbox" id="ch-chocolat-blanc" checked={filterBlanc} />
+                                    <label htmlFor="ch-chocolat-blanc" className="text-style4">
+                                        Chocolat blanc
+                                    </label>
+                                </div>
+                                <div>
+                                    <input onChange={(e) => setFilterLait(e.target.checked)} checked={filterLait} type="checkbox" id="ch-chocolat-lait" />
+                                    <label htmlFor="ch-chocolat-lait" className="text-style4">
+                                        Chocolat au lait
+                                    </label>
+                                </div>
+                                <div>
+                                    <input onChange={(e) => setFilterNoir(e.target.checked)} checked={filterNoir} type="checkbox" id="ch-chocolat-noir" />
+                                    <label htmlFor="ch-chocolat-noir" className="text-style4">
+                                        Chocolat noir
+                                    </label>
+                                </div>
+                                <div>
+                                    <input onChange={(e) => setFilterNoix(e.target.checked)} checked={filterNoix} type="checkbox" id="ch-noix" />
+                                    <label htmlFor="ch-noix" className="text-style4">
+                                        Noix/Noisette
+                                    </label>
+                                </div>
+                                <div>
+                                    <input onChange={(e) => setFilterFruit(e.target.checked)} checked={filterFruit} type="checkbox" id="ch-fruit" />
+                                    <label htmlFor="ch-fruit" className="text-style4">
+                                        Fruit
+                                    </label>
+                                </div>
+                                <div>
+                                    <input onChange={(e) => setFilterCaramel(e.target.checked)} checked={filterCaramel} type="checkbox" id="ch-caramel" />
+                                    <label htmlFor="ch-caramel" className="text-style4">
+                                        Caramel
+                                    </label>
+                                </div>
+                                <div>
+                                    <input onChange={(e) => setFilterLiqueur(e.target.checked)} checked={filterLiqueur} type="checkbox" id="ch-liqueur" />
+                                    <label htmlFor="ch-liqueur" className="text-style4">
+                                        Liqueur
+                                    </label>
+                                </div>
+                                <div className="text-style3">Prix</div>
+                                <div className="zone-filtre">
+                                    <div>
+                                        <div>
+                                            <span className="text-style4">Prix min</span>
+                                            <input onChange={(e) => setFilterPriceMin(e.target.value)} type="number" id="prix-min" value={filterPriceMin} />
+                                        </div>
+                                        <div>
+                                            <span className="text-style4">Prix max</span>
+                                            <input onChange={(e) => setFilterPriceMax(e.target.value)} type="number" id="prix-max" value={filterPriceMax} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="text-style3">Notes</div>
+                                <div className="zone-filtre">
+                                    <div>
+                                        <div>
+                                            <span className="text-style4">Note min</span>
+                                            <select onChange={(e) => setFilterNoteMin(e.target.value)} value={filterNoteMin} >
+                                                <option value={1}>1</option>
+                                                <option value={2}>2</option>
+                                                <option value={3}>3</option>
+                                                <option value={4}>4</option>
+                                                <option value={5}>5</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <span className="text-style4">Note max</span>
+                                            <select onChange={(e) => setFilterNoteMax(e.target.value)} value={filterNoteMax}>
+                                                <option value={1}>1</option>
+                                                <option value={2}>2</option>
+                                                <option value={3}>3</option>
+                                                <option value={4}>4</option>
+                                                <option value={5}>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                    </Col>
+                    <Col>
 
-                        <form onChange={() => setFilterAll(false)}>
+                        <Container>
+                            <Row>
 
+                                {filteredProducts.map((item) => (
+                                    <Col key={item.id}>
+                                        <ProduitCard item={item} />
+                                    </Col>
 
-                            <div>
-                                <input onChange={(e) => setFilterBlanc(e.target.checked)} type="checkbox" id="ch-chocolat-blanc" checked={filterBlanc} />
-                                <label htmlFor="ch-chocolat-blanc" className="text-style4">
-                                    Chocolat blanc
-                                </label>
-                            </div>
-                            <div>
-                                <input onChange={(e) => setFilterLait(e.target.checked)} checked={filterLait} type="checkbox" id="ch-chocolat-lait" />
-                                <label htmlFor="ch-chocolat-lait" className="text-style4">
-                                    Chocolat au lait
-                                </label>
-                            </div>
-                            <div>
-                                <input onChange={(e) => setFilterNoir(e.target.checked)} checked={filterNoir} type="checkbox" id="ch-chocolat-noir" />
-                                <label htmlFor="ch-chocolat-noir" className="text-style4">
-                                    Chocolat noir
-                                </label>
-                            </div>
-                            <div>
-                                <input onChange={(e) => setFilterNoix(e.target.checked)} checked={filterNoix} type="checkbox" id="ch-noix" />
-                                <label htmlFor="ch-noix" className="text-style4">
-                                    Noix/Noisette
-                                </label>
-                            </div>
-                            <div>
-                                <input onChange={(e) => setFilterFruit(e.target.checked)} checked={filterFruit} type="checkbox" id="ch-fruit" />
-                                <label htmlFor="ch-fruit" className="text-style4">
-                                    Fruit
-                                </label>
-                            </div>
-                            <div>
-                                <input onChange={(e) => setFilterCaramel(e.target.checked)} checked={filterCaramel} type="checkbox" id="ch-caramel" />
-                                <label htmlFor="ch-caramel" className="text-style4">
-                                    Caramel
-                                </label>
-                            </div>
-                            <div>
-                                <input onChange={(e) => setFilterLiqueur(e.target.checked)} checked={filterLiqueur} type="checkbox" id="ch-liqueur" />
-                                <label htmlFor="ch-liqueur" className="text-style4">
-                                    Liqueur
-                                </label>
-                            </div>
-                            <div className="text-style3">Prix</div>
-                            <div className="zone-filtre">
-                                <div>
-                                    <div>
-                                        <span className="text-style4">Prix min</span>
-                                        <input onChange={(e) => setFilterPriceMin(e.target.value)} type="number" id="prix-min" value={filterPriceMin} />
-                                    </div>
-                                    <div>
-                                        <span className="text-style4">Prix max</span>
-                                        <input onChange={(e) => setFilterPriceMax(e.target.value)} type="number" id="prix-max" value={filterPriceMax} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-style3">Notes</div>
-                            <div className="zone-filtre">
-                                <div>
-                                    <div>
-                                        <span className="text-style4">Note min</span>
-                                        <select onChange={(e) => setFilterNoteMin(e.target.value)} value={filterNoteMin} >
-                                            <option value={1}>1</option>
-                                            <option value={2}>2</option>
-                                            <option value={3}>3</option>
-                                            <option value={4}>4</option>
-                                            <option value={5}>5</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <span className="text-style4">Note max</span>
-                                        <select onChange={(e) => setFilterNoteMax(e.target.value)} value={filterNoteMax}>
-                                            <option value={1}>1</option>
-                                            <option value={2}>2</option>
-                                            <option value={3}>3</option>
-                                            <option value={4}>4</option>
-                                            <option value={5}>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div>
-                    <ul>
-                        {filteredProducts.map((item) => (
-                            <li key={item.id}>
-                                <ProduitCard item={item} />
-                            </li>
+                                ))}
+                            </Row>
 
-                        ))}
-
-                    </ul>
-                </div>
-            </div>
+                        </Container>
+                    </Col>
+                </Row>
+            </Container>
 
         </>
     );

@@ -11,7 +11,7 @@ export default function ProduitCard({ item }) {
         <>
         
         
-                <Card className="m-3" style={{ width: '18rem' } }>
+                <Card className="m-3" style={{ width: '16rem', height: '30rem' }  }>
                 <Link to="/Produit" state={item} className = "text-light">
                     <Card.Img variant="top" src={image} />
                 </Link>

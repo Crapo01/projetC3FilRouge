@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-dialog {
+  width:25% !important; top:20%;
+}
