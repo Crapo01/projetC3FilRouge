@@ -12,11 +12,16 @@ body {
     background-color: #B65F28;
 }
 
+.bc-orange{
+    background-color: #B65F28;
+    border-color: #B65F28;
+}
+
 .content {
     background-color: #FFFFFF;
 }
 
-#header, #footer, .content {
+#header, #footer {
     display: flex;
     justify-content: space-between;
 }
@@ -76,10 +81,10 @@ body {
     margin-bottom: 10px;
 }
 
-#filter {
+.filter {
     border: 2px solid;
     border-color: #2C1E1E;
-    padding: 20px;
+    padding: 20px;    
 }
 
 .table {
@@ -87,6 +92,9 @@ body {
     padding: 10px;
 }
 
+input{
+    width: 4rem;
+}
 
 
 

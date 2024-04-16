@@ -1,10 +1,19 @@
 
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom'
+import useLocalStorage from 'use-local-storage';
 export default function Produit() {
     const location=useLocation();
-    
+    const [cartItemsTotal, setcartItemsTotal] = useLocalStorage('total',0);
+    const [qte,setQte]=useState(1);
     const item=location.state;
     const image = require(`${item.image}`);
+
+function handleAdd() {
+    const total=parseInt(cartItemsTotal)+parseInt(qte);
+    parseInt(qte)>0? setcartItemsTotal(total):alert("Le total des produits ne peut pas etre inferieur a 1");
+}
+
     return (
 
         <> 
@@ -22,8 +31,8 @@ export default function Produit() {
                     <div className="text-style4" style={{ marginTop: 10 }}>
                         {item.description}
                     </div>
-                    <input type="number" id="qte" defaultValue={1} />
-                    <div className="text-style2" style={{ marginLeft: 10, marginTop: 10 }}>
+                    <input type="number" min={1} id="qte" defaultValue={qte}  onChange={(e)=>e.target.value>0?setQte(e.target.value):setQte(1)} />
+                    <div onClick={(handleAdd)} className="text-style2" style={{ marginLeft: 10, marginTop: 10 }}>
                         AJOUTER AU PANIER
                     </div>
                 </div>
