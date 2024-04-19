@@ -4,19 +4,27 @@ import Footer from "./Footer";
 import Header from "./Header";
 import 'bootstrap/dist/css/bootstrap.css';
 import Produit from "./Produit";
-
 import {
-  BrowserRouter,  
+  RouterProvider,
   Route,
   Routes,
-  
+  createBrowserRouter
+
 } from "react-router-dom";
 
 
+// 3️⃣ Router singleton created
+const router = createBrowserRouter([
+  { path: "*", Component: Root },
+]);
+
+// 4️⃣ RouterProvider added
+export default function App() {
+  return <RouterProvider router={router} />;
+}
 
 
-
-function App() {
+ function Root(){
   // state (data)
 
 
@@ -25,24 +33,25 @@ function App() {
   // rendering
   return (
     <>
-      <BrowserRouter basename="/">
-        <Header></Header>
+    
+      {/* <BrowserRouter > */}
+        
         <Routes>
-          
-          <Route path="/" element={<Acceuil />}/>
-          
-          <Route path="Boutique" element={<Boutique />}/>
-          <Route path="Produit" element={<Produit />}/>
-          
-            
-          
+
+          <Route path="/" element={<Header />}>
+            <Route index element={<Acceuil />} />
+            <Route path="Boutique" element={<Boutique />} />
+            <Route path="Produit" element={<Produit />} />
+
+          </Route>
+
         </Routes>
 
         <Footer></Footer>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </>
   )
-
+  
 }
 
-export default App;
+

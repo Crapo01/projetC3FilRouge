@@ -3,17 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
+import CartButton from './CartButton';
 
 
 export default function ProduitCard({ item }) {
-    const image = require(`${item.image}`);
-    const [cartItemsTotal, setcartItemsTotal] = useLocalStorage('total',0);
-    const [qte,setQte]=useState(1);
-
-    function handleAdd() {
-        const total=parseInt(cartItemsTotal)+parseInt(qte);
-        parseInt(qte)>0? setcartItemsTotal(total):alert("Le total des produits ne peut pas etre inferieur a 1");
-    }
+    const image = require(`${item.image}`);    
+    const [qte,setQte]=useState(1);    
 
     return (
 
@@ -32,9 +27,8 @@ export default function ProduitCard({ item }) {
                         <Card.Text>
                             Note: {item.note}
                         </Card.Text>
-                        <input type="number" min={1} id="qte" defaultValue={qte} value={qte} onChange={(e)=>e.target.value>0?setQte(e.target.value):setQte(1)}/>
-                        <Button variant="warning" onClick={(handleAdd)}>AJOUTER AU PANIER</Button>
-                        
+                        <input type="number" min={1} id="qte" value={qte} onChange={(e)=>e.target.value>0?setQte(e.target.value):setQte(1)}/>
+                        <CartButton item={item} qte={qte}></CartButton>
                     </Card.Body>
                 </Card>
         
