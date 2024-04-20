@@ -1,57 +1,23 @@
-import Acceuil from "./Acceuil";
-import Boutique from "./Boutique";
-import Footer from "./Footer";
-import Header from "./Header";
-import 'bootstrap/dist/css/bootstrap.css';
-import Produit from "./Produit";
-import {
-  RouterProvider,
-  Route,
-  Routes,
-  createBrowserRouter
-
-} from "react-router-dom";
-
-
-// 3️⃣ Router singleton created
-const router = createBrowserRouter([
-  { path: "*", Component: Root },
-]);
-
-// 4️⃣ RouterProvider added
-export default function App() {
-  return <RouterProvider router={router} />;
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Boutique from './Boutique';
+import Acceuil from './Acceuil';
+import Produit from './Produit';
+import Header from './Header';
+function App() {
+  return <div>
+    <Header />
+    <Routes>
+      
+      <Route path="/" element={<Acceuil />} />
+      <Route path="/Boutique" element={<Boutique/>} />
+      <Route path="/Produit" element={<Produit />} />
+    </Routes>
+  </div>
 }
 
-
- function Root(){
-  // state (data)
+export default App;
 
 
-  // behaviour (functions)
-
-  // rendering
-  return (
-    <>
-    
-      {/* <BrowserRouter > */}
-        
-        <Routes>
-
-          <Route path="/" element={<Header />}>
-            <Route index element={<Acceuil />} />
-            <Route path="Boutique" element={<Boutique />} />
-            <Route path="Produit" element={<Produit />} />
-
-          </Route>
-
-        </Routes>
-
-        <Footer></Footer>
-      {/* </BrowserRouter> */}
-    </>
-  )
-  
-}
 
 

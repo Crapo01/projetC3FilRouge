@@ -9,7 +9,7 @@ export default function Produit() {
     const location = useLocation();
     const [qte, setQte] = useState(1);
     const item = location.state;
-    const image = require(`${item.image}`);
+    const image = item.image;
 
 
     return (

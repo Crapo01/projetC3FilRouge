@@ -5,7 +5,7 @@ import useLocalStorage from 'use-local-storage';
 
 
 export default function CartItem({ item }) {
-    const image = require(`${item.image}`);
+    const image =item.image;
     const [cartItems, setcartItems] = useLocalStorage('items', 0);
 
 

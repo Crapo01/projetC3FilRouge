@@ -20,13 +20,13 @@ function Carroussel() {
     <div className="position-relative">
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
-          <img className="img-fluid" src={acceuil1} alt="" />
+          <img key={1} className="img-fluid" src={acceuil1} alt="" />
         </Carousel.Item>
         <Carousel.Item>
-          <img className="img-fluid" src={acceuil2} alt="" />
+          <img key={2} className="img-fluid" src={acceuil2} alt="" />
         </Carousel.Item>
         <Carousel.Item>
-          <img className="img-fluid" src={acceuil3} alt="" />
+          <img key={3} className="img-fluid" src={acceuil3} alt="" />
         </Carousel.Item>
       </Carousel>
       <div className="btn btn-dark text-style2 position-absolute top-50 start-50 translate-middle"><Link to="/Boutique" className = "text-light">VOIR LA BOUTIQUE</Link></div>

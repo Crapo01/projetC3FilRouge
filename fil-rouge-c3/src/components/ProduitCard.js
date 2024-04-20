@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import useLocalStorage from 'use-local-storage';
 import CartButton from './CartButton';
 
 
 export default function ProduitCard({ item }) {
-    const image = require(`${item.image}`);    
+    const image = item.image;    
     const [qte,setQte]=useState(1);    
 
     return (

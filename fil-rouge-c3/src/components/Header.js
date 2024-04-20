@@ -16,7 +16,7 @@ export default function Header() {
     const [show, setShow] = useState(false);
     const [total, setTotal] = useState(0);
     const [itemsCount, setItemsCount]=useState(0);
-    const [cartItems, setcartItems] = useLocalStorage('items', []);
+    const [cartItems, setcartItems] = useLocalStorage('items', 0);
     const handleClose = () => { setShow(false); console.log("Closed") };
     const handleShow = () => { setShow(true); console.log("Open") }
     const handleTotalPrice = ()=>{
@@ -85,7 +85,7 @@ export default function Header() {
                             {
                                 JSON.parse(cartItems) !== 0
                                     ?
-                                    JSON.parse(cartItems).map((i) => <CartItem item={i}></CartItem>)
+                                    JSON.parse(cartItems).map((i) => <CartItem key={i.id} item={i}></CartItem>)
                                     :
                                     <div>PANIER VIDE</div>}
                         </div>
