@@ -29,7 +29,7 @@ export default function CartItem({ item }) {
 
     return (
         <>
-            <Row className=" bg-success content m-3 border rounded align-content-center justify-content-between" style={{ height: '7rem' }}>
+            <Row className=" bg-light content m-3 border rounded align-content-center justify-content-between" style={{ height: '7rem' }}>
                 <Col xs={2} className='align-content-center' onClick={handleDelete}>
                     <div className='btn btn-sm btn-outline-dark float-start'>X</div>
                 </Col>
