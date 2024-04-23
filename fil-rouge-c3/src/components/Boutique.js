@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import itemsList from "./datas/products.json";
 import ProduitCard from "./ProduitCard";
 import Container from 'react-bootstrap/Container';
@@ -7,7 +7,8 @@ import Col from 'react-bootstrap/Col';
 import Accordion from 'react-bootstrap/Accordion';
 export default function Boutique() {
     // state (data)
-    const products = itemsList;
+    const [products, setProducts] = useState([]);
+
     const [filterAll, setFilterAll] = useState(true);
     const [filterBlanc, setFilterBlanc] = useState(false);
     const [filterNoir, setFilterNoir] = useState(false);
@@ -41,10 +42,22 @@ export default function Boutique() {
         (filterPriceMax === '' || product.price <= parseFloat(filterPriceMax))
     )
 
-
+    useEffect (() => {
+        getProducts()
+      }, [])
+    
 
 
     // behaviour (functions)
+    
+    // simule l'apel API des datas
+    async function getProducts() {
+        const response = await fetch('https://dummyjson.com/products')  
+        const data = await response.json() 
+        setProducts(itemsList)
+      }
+    
+
     function resetFilter(e) {
         console.log(e);
         setFilterAll(e);
@@ -193,8 +206,11 @@ export default function Boutique() {
                                 </Col>
 
                             ))}
-                            {filteredProducts.length === 0 && <Col md={4} className="d-flex justify-content-evenly h1">NO RESULTS FOUND</Col>}
-
+                            {filteredProducts.length === 0 && <Col md={4} className="d-flex justify-content-evenly h1">
+                                NO RESULTS FOUND 
+                                
+                                </Col>}
+                            {products.length === 0 && <div md={4} className="d-flex justify-content-evenly h1"> LOADING</div>}
 
 
                         </Row>
