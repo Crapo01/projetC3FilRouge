@@ -62,7 +62,7 @@ export default function Boutique() {
     // simule l'apel API des datas
     async function getProducts() {
         try {
-            const response = await fetch("./datas/product.json")
+            const response = await fetch("./datas/products.json")
             const data = await response.json()
             console.log(response)
             setProducts(data)
