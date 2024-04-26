@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import itemsList from "./datas/products.json";
 import ProduitCard from "./ProduitCard";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -33,6 +32,16 @@ export default function Boutique() {
                 ((filterCaramel && product.category.caramel === true)) ||
                 ((filterFruit && product.category.fruit === true)) ||
                 ((filterNoir && product.category.noir === true))
+            ) ||
+            (
+                !filterAll &&
+                !filterBlanc &&
+                !filterLait && 
+                !filterLiqueur && 
+                !filterNoix && 
+                !filterCaramel && 
+                !filterFruit && 
+                !filterNoir 
             )
         )
         &&
@@ -52,9 +61,10 @@ export default function Boutique() {
     
     // simule l'apel API des datas
     async function getProducts() {
-        const response = await fetch('https://dummyjson.com/products')  
-        const data = await response.json() 
-        setProducts(itemsList)
+        const response = await fetch("./datas/products.json")  
+        const data = await response.json()
+        console.log(response) 
+        setProducts(data)
       }
     
 
