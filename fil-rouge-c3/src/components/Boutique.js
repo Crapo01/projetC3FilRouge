@@ -36,12 +36,12 @@ export default function Boutique() {
             (
                 !filterAll &&
                 !filterBlanc &&
-                !filterLait && 
-                !filterLiqueur && 
-                !filterNoix && 
-                !filterCaramel && 
-                !filterFruit && 
-                !filterNoir 
+                !filterLait &&
+                !filterLiqueur &&
+                !filterNoix &&
+                !filterCaramel &&
+                !filterFruit &&
+                !filterNoir
             )
         )
         &&
@@ -51,22 +51,27 @@ export default function Boutique() {
         (filterPriceMax === '' || product.price <= parseFloat(filterPriceMax))
     )
 
-    useEffect (() => {
+    useEffect(() => {
         getProducts()
-      }, [])
-    
+    }, [])
+
 
 
     // behaviour (functions)
-    
+
     // simule l'apel API des datas
     async function getProducts() {
-        const response = await fetch("./datas/products.json")  
-        const data = await response.json()
-        console.log(response) 
-        setProducts(data)
-      }
-    
+        try {
+            const response = await fetch("./datas/product.json")
+            const data = await response.json()
+            console.log(response)
+            setProducts(data)
+        } catch (error) {
+            alert("async request failed!!!")
+            console.error("error".error);
+        }
+    }
+
 
     function resetFilter(e) {
         console.log(e);
@@ -211,15 +216,15 @@ export default function Boutique() {
                             <Col xs={12} className="d-flex justify-content-evenly border flex-grow-1"></Col>
                             {console.log(filteredProducts)}
                             {filteredProducts.map((item) => (
-                                <Col md={6} lg={4}  className="d-flex justify-content-evenly " >
+                                <Col md={6} lg={4} className="d-flex justify-content-evenly " >
                                     <ProduitCard key={item.id} item={item} />
                                 </Col>
 
                             ))}
                             {filteredProducts.length === 0 && <Col md={4} className="d-flex justify-content-evenly h1">
-                                NO RESULTS FOUND 
-                                
-                                </Col>}
+                                NO RESULTS FOUND
+
+                            </Col>}
                             {products.length === 0 && <div md={4} className="d-flex justify-content-evenly h1"> LOADING</div>}
 
 
