@@ -4,15 +4,17 @@ import panier from "./images/panier.png";
 import Button from 'react-bootstrap/Button';
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 import CartItem from "./CartItem";
 import Container from "react-bootstrap/esm/Container";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import PanierContext from "./PanierContext";
 
 
 export default function Header() {
+    const { totalFromContext,SumUpItems } = useContext(PanierContext);
     const [show, setShow] = useState(false);
     const [total, setTotal] = useState(0);
     const [itemsCount, setItemsCount]=useState(0);
@@ -33,6 +35,8 @@ export default function Header() {
         }
         setTotal(totalPrice.toFixed(2));
         setItemsCount(itemsTotalQty);
+        SumUpItems(itemsTotalQty);
+
     }
     useEffect(handleTotalPrice,[cartItems])
 
@@ -65,6 +69,7 @@ export default function Header() {
                                 </div>
                                 <Button className="ms-5 panier bc-orange btn-warning" onClick={handleShow}>
                                     <span className="float-end m-3">{itemsCount}</span>
+                                    <span className="float-start m-3">{totalFromContext}</span>
                                     <img src={panier} alt="panier" width="40" height="40" className="float-end"></img>
                                 </Button>
                             </Nav>
